@@ -1,14 +1,21 @@
 import { Link, Box } from '@mui/material';
 import { Link as RouterLink } from 'react-router-dom';
+import { useLocation } from 'react-router-dom'
+
 type TNavBar = {
   links: {
     text: string;
     href: string;
     'data-testid'?: string;
+    'aria-current'?: undefined;
   }[];
 };
 
 function NavBar({ links }: TNavBar) {
+
+  let location = useLocation();
+  let locationPathname = location.pathname;
+
   return (
     <Box
       component="aside"
@@ -29,6 +36,7 @@ function NavBar({ links }: TNavBar) {
         <img src="/surelogo.svg" alt="logo"></img>
       </Link>
 
+
       {links.map(({ text, href, 'data-testid': dataTestId }) => (
         <Link
           component={RouterLink}
@@ -43,6 +51,8 @@ function NavBar({ links }: TNavBar) {
             },
           }}
           data-testid={dataTestId}
+          // eslint-disable-next-line jsx-a11y/aria-proptypes
+          aria-current={`${href === locationPathname ? 'page' : 'false'}`}
         >
           {text}
         </Link>

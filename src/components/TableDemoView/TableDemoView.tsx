@@ -8,6 +8,8 @@ const testRows = Array(15)
     value: 'VALUE',
   }));
 
+//console.log(testRows)
+
 function TableDemoView() {
   return (
     <Box sx={{ textAlign: 'center' }}>
